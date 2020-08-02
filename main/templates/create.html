@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- form.py 모델 생성 -->
+    <form method="POST" action="">
+    <!-- views.py 에서 만들어준 폼 정의를 탬플릿 문법을 통해 가져온다. 
+        cf] ~~.as_p는 p태그로 폼들을 감싸줌 --> 
+        {{jss_form.as_p}}
+        <input type = "submit" value="확인">
+    </form>
+    </body>
+</html>
