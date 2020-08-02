@@ -22,30 +22,19 @@
       <!-- 템플릿 태그를 사용해서 저장시킨 데이터를 모은 것을 html에 나타나게 해준다. -->
       <p>자기소개서 작성</p>
     </div>
-
-    <div class="all-jss">
-      <p>{{jss.title}}</p>
-      <p>{{jss.content}}</p>
-      <p>{{jss.updated_at}</p>
-    </div>
-    <div class="all-jss">
-      <p>{{jss.title}}</p>
-      <p>{{jss.content}}</p>
-      <p>{{jss.updated_at}</p>
-    </div>
-    <div class="all-jss">
-      <p>{{jss.title}}</p>
-      <p>{{jss.content}}</p>
-      <p>{{jss.updated_at} </p>
-    </div>
-
     
     <!--탬플릿 태그를 사용해서 모든 데이터를 가져오기 - views.py에서 가져온 함수 -all_jss -->
-    {% for jss in all_jss %}
     <!--무엇을 넣을 것인가-->
-    {{jss.title}}
-    {{jss.content}}
-    {{jss.updated_at}}
+ 
+    {% for jss in all_jss %}
+
+    <div class="all_jss">
+      <p>{{jss.title}}</p>
+      <p>{{jss.content}}</p>
+      <p>{{jss.update_at|date:"Y-m-d"}} </p>
+    </div>
+
     {% endfor %}
+
   </body>
 </html>

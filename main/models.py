@@ -4,4 +4,4 @@ from django.db import models
 class Jasoseol(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField(null=True)
-    update_at = models.DateTimeField(auto_now=True) 
+    update_at = models.DateTimeField(null=True, auto_now=True) 

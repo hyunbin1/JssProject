@@ -7,7 +7,8 @@
 </head>
 <body>
     <!-- form.py 모델 생성 -->
-    <form method="POST" action="">
+    <form action="." method="POST" action="">
+     {% csrf_token %}
     <!-- views.py 에서 만들어준 폼 정의를 탬플릿 문법을 통해 가져온다. 
         cf] ~~.as_p는 p태그로 폼들을 감싸줌 --> 
         {{jss_form.as_p}}

@@ -6,7 +6,7 @@ from .models import Jasoseol
 def index(request):
     # index라는 함수에 자기소개서 데이터를 다 보내주기
     all_jss = Jasoseol.objects.all()
-    return render(request, 'index.html', {all_jss:all_jss})
+    return render(request, 'index.html', {'all_jss':all_jss})
 
 
 def create(request):

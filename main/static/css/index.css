@@ -10,7 +10,7 @@ a {
 
 
 .make-jss,
-.all-jss {
+.all_jss {
     width: 200px;
     height: 300px;
     border: 1px solid black;
@@ -20,7 +20,7 @@ a {
     margin-bottom: 30px;
 }
 
-.all-jss {
+.all_jss {
     /* inline 속성도 가지면서 flex속성도 가지게 됨. = 옆으로 정렬할때 필요 */
     display: inline-flex;
 }
