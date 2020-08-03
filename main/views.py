@@ -41,3 +41,10 @@ def delete(request, jss_id):
     my_jss = Jasoseol.objects.get(pk=jss_id)
     my_jss.delete()
     return redirect('index')
+
+
+def update(request, jss_id):
+    # jssform에 모델 폼을 사용하려고 선언해줌
+    jss_form = JssForm()
+    # model form을 사용할 html을 연결시켜줌
+    return render(request, 'create.html', {'jss_form':jss_form})
