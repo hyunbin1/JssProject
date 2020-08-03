@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "c:\\Users\\rladb\\Desktop\\현비닝\\JssProject\\venv\\Scripts\\python.exe"
+    "python.pythonPath": "c:\\Users\\rladb\\Desktop\\현비닝\\JssProject\\venv\\Scripts\\python.exe",
+    "python.formatting.provider": "black"
 }

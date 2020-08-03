@@ -27,5 +27,4 @@ urlpatterns = [
     path('delete/<int:jss_id>', delete, name="delete"),
     path('update/<int:jss_id>', update, name="update"),
 
-
 ]

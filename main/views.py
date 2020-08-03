@@ -44,7 +44,19 @@ def delete(request, jss_id):
 
 
 def update(request, jss_id):
-    # jssform에 모델 폼을 사용하려고 선언해줌
-    jss_form = JssForm()
+    #  기존에 쓰여져 있는 내용을 그대로 수정할때 가져오고 싶기때문에 가져옴
+    my_jss = Jasoseol.objects.get(pk=jss_id)
+    # jss_form에 모델 폼을 사용하려고 선언해줌 - instance라는 인자에 가져온 특정한 객체를 가져오게 되면 이 객체가 모델에 담기게 되서 랜더링이 됨
+    jss_form = JssForm(instance=my_jss)
+    # update 유효성 검증
+    if request.method == "POST":
+        update_form =JssForm(request.POST, instance=my_jss)
+        if update_form.is_valid():
+            update_form.save()
+            return redirect('index') 
+    
     # model form을 사용할 html을 연결시켜줌
     return render(request, 'create.html', {'jss_form':jss_form})
+
+
+
