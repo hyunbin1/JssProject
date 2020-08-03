@@ -25,3 +25,19 @@ def create(request):
     jss_form = JssForm()
     
     return render(request, 'create.html', {'jss_form':jss_form})
+
+# detail.html 만들어주기 - 상세 설명마다 모든 html 파일을 생성하는 것이 아니라 이 하나를 가지고
+# 원하는 특정 데이터를 제공할 수 있게 만들어줄것임 
+
+def detail(request, jss_id): 
+    # get = 객체 하나만 보내줘 - pk=1 객체 번호가 1번인 것을
+    # my_jss = Jasoseol.objects.get(pk=1)
+    # 원하는 객체 번호 불러오기 - index.html에서 사용한 jss_id(객체 번호)를 가져오기
+    my_jss = Jasoseol.objects.get(pk=jss_id)
+
+    return render(request, 'detail.html', {'my_jss':my_jss }) 
+
+def delete(request, jss_id):
+    my_jss = Jasoseol.objects.get(pk=jss_id)
+    my_jss.delete()
+    return redirect('index')

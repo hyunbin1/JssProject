@@ -12,6 +12,7 @@
       href="{% static 'css/index.css' %}"
     />
   </head>
+
   <body>
     <div class="make-jss">
       <a href="{% url 'create' %}">
@@ -22,19 +23,21 @@
       <!-- 템플릿 태그를 사용해서 저장시킨 데이터를 모은 것을 html에 나타나게 해준다. -->
       <p>자기소개서 작성</p>
     </div>
-    
+
     <!--탬플릿 태그를 사용해서 모든 데이터를 가져오기 - views.py에서 가져온 함수 -all_jss -->
     <!--무엇을 넣을 것인가-->
- 
+
     {% for jss in all_jss %}
-
-    <div class="all_jss">
-      <p>{{jss.title}}</p>
-      <p>{{jss.content}}</p>
-      <p>{{jss.update_at|date:"Y-m-d"}} </p>
-    </div>
-
+    <!-- jss.id - 객체 번호를 같이 보내서 detail.html에서 
+      특정한 객체번호에 해당되는 페이지만 나올 수 있게 링크를 걸어준다  -->
+    <a href="{% url 'detail' jss.id %}">
+      <div class="all_jss">
+        <p>{{jss.id}}</p>
+        <p>{{jss.title}}</p>
+        <p>{{jss.content}}</p>
+        <p>{{jss.update_at|date:"Y-m-d"}}</p>
+      </div>
+    </a>
     {% endfor %}
-
   </body>
 </html>
