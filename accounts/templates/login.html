@@ -1,0 +1,8 @@
+<h1>로그인 페이지</h1>
+
+<form method="POST" action="">
+  {% csrf_token %}
+  <!-- 장고에 저장되어 있는 로그인 폼 사용함 -->
+  {{form.as_p}}
+  <input type="submit" value="로그인" />
+</form>

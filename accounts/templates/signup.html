@@ -1,1 +1,10 @@
 <h1>회원가입 페이지 입니다.</h1>
+
+<!-- 유저 관련된 것이기 때문에 post 방식을 써줘야됨 - action 공백으로 두면 이 페이지를 랜더링 시킨 함수를 사용한다.-->
+
+<form method="POST" action="">
+  {% csrf_token %}
+  <!-- as.p =p태그로 감싸줌 -->
+  {{regi_form.as_p}}
+  <input type="submit" value="회원가입" />
+</form>

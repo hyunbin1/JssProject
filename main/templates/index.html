@@ -14,10 +14,30 @@
   </head>
 
   <body>
+    <!-- if문을 사용해서 로그인 버튼, 로그아웃 버튼 상황에 따라 변화시켜주기 -->
+
+    {% if user.is_authenticated %}
+
+    <a href="{% url 'logout' %}">
+      <button>로그아웃</button>
+    </a>
+
+    안녕하세요! {{user}}님!
+    <!-- 로그인 되지 않았으면 회원가입과 로그인 창 뜨게 해주기 -->
+
+    {% else %}
+
     <!-- 회원가입 버튼 -->
     <a href="{% url 'signup' %}">
       <button>회원가입</button>
     </a>
+
+    <!-- 로그인 버튼 -->
+    <a href="{% url 'login' %}">
+      <button>로그인</button>
+    </a>
+
+    {% endif %}
 
     <div class="make-jss">
       <a href="{% url 'create' %}">
