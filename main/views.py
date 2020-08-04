@@ -3,7 +3,11 @@ from .forms import JssForm
 from .models import Jasoseol
 from django.http import Http404 
 from django.core.exceptions import PermissionDenied
-# Create your views here.
+# 로그인 데코레이터
+from django.contrib.auth.decorators import login_required
+
+
+
 
 def index(request):
     # index라는 함수에 자기소개서 데이터를 다 보내주기
@@ -11,10 +15,13 @@ def index(request):
     return render(request, 'index.html', {'all_jss':all_jss})
 
 
-def create(request):
     # 로그인이 안되어있을때 글 작성하지 못하게 하기
-    if request.user.is_authenticated:
-        return redirect('login')
+# [방법 1] 로그인 필요한 부분에 데코레이션 하기
+@login_required(login_url="/login/")
+def create(request):
+    #[방법 2]
+    #if request.user.is_authenticated:
+    #    return redirect('login')
 
     # 만약 포스트라는 방식으로 객체 생성 요청이 들어왔다면,
     # Jssform에 post 방식으로 객체를 채워줘라 = create 해주는것
@@ -64,6 +71,16 @@ def delete(request, jss_id):
 
 
 def update(request, jss_id):
+
+       # url로 다른 사람이 어베이트하지 못하도록 하기
+    if request.user == my_jss.author:
+        my_jss.update()
+        return redirect('index')
+
+    # 자기 글 업데이트가 아니면 권한을 위반했다는 에러를 띄어주기
+    raise PermissionDenied
+
+
     #  기존에 쓰여져 있는 내용을 그대로 수정할때 가져오고 싶기때문에 가져옴
     my_jss = Jasoseol.objects.get(pk=jss_id)
     # jss_form에 모델 폼을 사용하려고 선언해줌 - instance라는 인자에 가져온 특정한 객체를 가져오게 되면 이 객체가 모델에 담기게 되서 랜더링이 됨
