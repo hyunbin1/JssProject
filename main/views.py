@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect, get_object_or_404
 from .forms import JssForm
 from .models import Jasoseol
 from django.http import Http404 
+from django.core.exceptions import PermissionDenied
 # Create your views here.
 
 def index(request):
@@ -52,8 +53,13 @@ def detail(request, jss_id):
 
 def delete(request, jss_id):
     my_jss = Jasoseol.objects.get(pk=jss_id)
-    my_jss.delete()
-    return redirect('index')
+    # url로 다른 사람이 삭제하지 못하도록 하기
+    if request.user == my_jss.author:
+        my_jss.delete()
+        return redirect('index')
+
+    # 자기 글 삭제가 아니면 권한을 위반했다는 에러를 띄어주기
+    raise PermissionDenied
 
 
 def update(request, jss_id):
