@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import JssForm
 from .models import Jasoseol
+from django.http import Http404 
 # Create your views here.
 
 def index(request):
@@ -30,10 +31,14 @@ def create(request):
 # 원하는 특정 데이터를 제공할 수 있게 만들어줄것임 
 
 def detail(request, jss_id): 
+    try:
     # get = 객체 하나만 보내줘 - pk=1 객체 번호가 1번인 것을
     # my_jss = Jasoseol.objects.get(pk=1)
     # 원하는 객체 번호 불러오기 - index.html에서 사용한 jss_id(객체 번호)를 가져오기
-    my_jss = Jasoseol.objects.get(pk=jss_id)
+        my_jss = Jasoseol.objects.get(pk=jss_id)
+    except: 
+        raise Http404
+
 
     return render(request, 'detail.html', {'my_jss':my_jss }) 
 
