@@ -17,7 +17,7 @@ class Jasoseol(models.Model):
     #[1. default 값으로 유저를 넣어주거나, 2. 유저를 넣어주지 않아도 되게 만들어주거나]
     # 선택 = 2. 유저 넣지 않아도 되게 - makemigrations 하고 null=True 사용
     # author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    # 만약에 작성자를 설정하고 싶으면 기존의 글들을 다 지우고 null도 지워준다음에 migrate 다시 해주면 됨.
+    # 만약에 작성자를 설정하고 싶으면 기존의 글들을 다 지우고 null도 지워준다음에 migrate 다시 해주면 됨. - 2번 선택하셈
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     # 혹은 default 값을 관리자 계정으로 해주고 싶으면 null 대신에 default=관리자 계정 으로 설정해주면 됨.
 

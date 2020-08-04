@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import index, create, detail, delete, update
+from .views import index, create, detail, delete, update, my_index
 
 urlpatterns =[
     path('', index, name="index"),
+    path('my_index/', my_index, name="my_index"),
     path('create/', create, name="create"),
     # <int:jss_id>는 views.py 에서 지정한 객체 번호를 html,url과 연결시켜주는 것임.  
     path('detail/<int:jss_id>', detail, name="detail"),

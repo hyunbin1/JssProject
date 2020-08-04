@@ -15,6 +15,14 @@ def index(request):
     return render(request, 'index.html', {'all_jss':all_jss})
 
 
+
+def my_index(request):
+    # 필터를 사용해서 내 자소서만 보게 만들기
+    my_jss = Jasoseol.objects.filter(author=request.user)
+    return render(request, 'index.html', {'all_jss':my_jss})
+
+
+
     # 로그인이 안되어있을때 글 작성하지 못하게 하기
 # [방법 1] 로그인 필요한 부분에 데코레이션 하기
 @login_required(login_url="/login/")
