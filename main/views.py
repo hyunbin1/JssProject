@@ -12,6 +12,9 @@ def index(request):
 
 
 def create(request):
+    # 로그인이 안되어있을때 글 작성하지 못하게 하기
+    if request.user.is_authenticated:
+        return redirect('login')
 
     # 만약 포스트라는 방식으로 객체 생성 요청이 들어왔다면,
     # Jssform에 post 방식으로 객체를 채워줘라 = create 해주는것
@@ -47,8 +50,6 @@ def detail(request, jss_id):
     #    my_jss = Jasoseol.objects.get(pk=jss_id)
     # except: 
     #   raise Http404
-
-
     return render(request, 'detail.html', {'my_jss':my_jss }) 
 
 def delete(request, jss_id):
