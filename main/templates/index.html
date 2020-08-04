@@ -57,7 +57,7 @@
       특정한 객체번호에 해당되는 페이지만 나올 수 있게 링크를 걸어준다  -->
     <a href="{% url 'detail' jss.id %}">
       <div class="all_jss">
-        <p>{{jss.id}}</p>
+        <p>{{jss.author}}</p>
         <p>{{jss.title}}</p>
         <p>{{jss.content}}</p>
         <p>{{jss.update_at|date:"Y-m-d"}}</p>

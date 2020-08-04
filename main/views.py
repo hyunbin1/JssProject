@@ -11,12 +11,17 @@ def index(request):
 
 
 def create(request):
+
     # 만약 포스트라는 방식으로 객체 생성 요청이 들어왔다면,
     # Jssform에 post 방식으로 객체를 채워줘라 = create 해주는것
     if request.method == "POST":
         filled_form = JssForm(request.POST)     
         #유효성 검증, 저장이 쉬움
         if filled_form.is_valid():
+            # 마지막] 임시 폼을 만들어서 유효성 검증이 되면 업데이트가 되기 전에 잠시 지연시킴 = commit false
+            temp_form = filled_form.save(commit=False)
+            # 현재 로그인된 유저를 넣어줌
+            temp_form.author = request.user            
             filled_form.save()
             # redirect = url페이지 이름을 써줌으로서 데이터 다루지 않고 그저 그 페이지로 옮겨줌
             # 새로 객체가 생성됐으면 목록으로 다시 돌아가게 해주는 것
